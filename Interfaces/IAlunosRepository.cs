@@ -5,7 +5,19 @@ namespace APICursosGratuitos.Interfaces
 {
     public interface IAlunosRepository
     {
-      
+        ICollection<Alunos> GetAll();
+
+        Alunos GetById(int id);
+
+        //CREATE
+        Alunos Insert(Alunos alunos);
+
+        //UPDATE
+        Alunos Update(int id, Alunos alunos);
+
+        //DELETE
+        Alunos Delete(int Ra);
+
 
     }
 }
