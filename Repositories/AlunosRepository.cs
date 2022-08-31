@@ -22,7 +22,7 @@ namespace APICursosGratuitos.Repositories
             {
                 conexao.Open(); // abrir conexão
 
-                // escreve a consulta 
+                // escreve a consulta de exclusão
                 string script = "DELETE FROM Alunos WHERE RA=@ra";
 
                 // Comando de execução no banco criado
@@ -44,6 +44,7 @@ namespace APICursosGratuitos.Repositories
 
             return true;
         }
+
 
         // Buscar tudo - GET
         public ICollection<Alunos> GetAll()
@@ -123,6 +124,7 @@ namespace APICursosGratuitos.Repositories
             return aluno; // retorna o aluno do RA buscado
         }
 
+
         //Cadastra os dados do aluno - INSERT 
         public Alunos Insert(Alunos alunos)
         {
@@ -132,7 +134,7 @@ namespace APICursosGratuitos.Repositories
             {
                 conexao.Open();   // Abre uma conexao
 
-                // escrever a nossa consulta
+                // escrever a consulta de inserção
                 string script = "INSERT INTO Alunos (Usuario, Nome, CPF, Email, Senha) VALUES (@Usuario, @Nome, @Cpf, @Email, @Senha)";
 
                 // Criamos o comando de execução no banco
@@ -154,10 +156,37 @@ namespace APICursosGratuitos.Repositories
             return alunos;
         }
 
+
         // Edita/Altera algum dado do aluno - UPDATE
-        public Alunos Update(int id, Alunos alunos)
+        public Alunos Update(int ra, Alunos alunos)
         {
-            throw new System.NotImplementedException();
+            using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
+            {
+                conexao.Open(); //conexão iniciada
+
+                // escrever a consulta de atualização de dados
+                string script = "UPDATE Alunos SET Usuario=@Usuario, Nome=@Nome, CPF=@Cpf, Email=@Email, Senha=@Senha WHERE RA=@ra";
+
+                // Criamos o comando de execução no banco
+                using (SqlCommand cmd = new SqlCommand(script, conexao))
+                {
+                    //fazemos as declarações das variaveis por parametros
+                    cmd.Parameters.Add("@ra", SqlDbType.Int).Value = ra;
+                    cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar).Value = alunos.Usuario;
+                    cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = alunos.Nome;
+                    cmd.Parameters.Add("@Cpf", SqlDbType.NVarChar).Value = alunos.Cpf;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = alunos.Email;
+                    cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
+
+                    // Tipo de comando, tipo texto. CommandType é um Enum
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                    alunos.Ra = ra;
+                }
+
+            }
+
+            return alunos; // o atributo alterado, do objeto alunos 
         }
 
 
