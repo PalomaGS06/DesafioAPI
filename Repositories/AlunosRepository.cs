@@ -126,7 +126,32 @@ namespace APICursosGratuitos.Repositories
         //Cadastra os dados do aluno - INSERT 
         public Alunos Insert(Alunos alunos)
         {
-            throw new System.NotImplementedException();
+          
+            // parametro que gerencia certos comandos de conexão
+            using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
+            {
+                conexao.Open();   // Abre uma conexao
+
+                // escrever a nossa consulta
+                string script = "INSERT INTO Alunos (Usuario, Nome, CPF, Email, Senha) VALUES (@Usuario, @Nome, @Cpf, @Email, @Senha)";
+
+                // Criamos o comando de execução no banco
+                using (SqlCommand cmd = new SqlCommand(script, conexao))
+                {
+                    //fazemos as declarações das variaveis por parametros
+                    cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar).Value = alunos.Usuario;
+                    cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = alunos.Nome;
+                    cmd.Parameters.Add("@Cpf", SqlDbType.NVarChar).Value = alunos.Cpf;
+                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = alunos.Email;
+                    cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
+                                     
+                    cmd.CommandType = CommandType.Text; // Tipo de comando do tipo texto. CommandType é um Enum
+                    cmd.ExecuteNonQuery(); //returna o número de linhas afetadas/alteradas
+                }
+
+            }
+
+            return alunos;
         }
 
         // Edita/Altera algum dado do aluno - UPDATE
