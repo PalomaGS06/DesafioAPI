@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>APICursosGratuitos</name>
+    </assembly>
+    <members>
+        <member name="M:APICursosGratuitos.Controllers.AlunosController.Cadastrar(APICursosGratuitos.Models.Alunos,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Cadastra os alunos nos cursos
+            </summary>
+            <param name="alunos">Dados dos alunos</param>
+            <returns>Dados do aluno cadastrado</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AlunosController.Listar">
+            <summary>
+            Lista todos os alunos existentes
+            </summary>
+            <returns>Lista do Aluno</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AlunosController.Alterar(System.Int32,APICursosGratuitos.Models.Alunos)">
+            <summary>
+            Altera os dados de um aluno
+            </summary>
+            <param name="ra"> RA do Aluno</param>
+            <param name="aluno">Todas as informações do aluno</param>
+            <returns>Aluno Alterado!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AlunosController.Deletar(System.Int32)">
+            <summary>
+            Exclui um aluno da aplicação
+            </summary>
+            <param name="ra">RA do aluno</param>
+            <returns>Mensagem de exclusão</returns>
+        </member>
+    </members>
+</doc>
