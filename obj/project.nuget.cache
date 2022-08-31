@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nc37IaaIpUeSDfumV21RaPOJFJpgtRi+hMvTVSRePj3wxHKFFFWYGinpEp9j9sKoFuM9qfa5lOho1v21M8Yfew==",
+  "dgSpecHash": "1qOi5DdXYntb9ZJG3LAUfZnESZNfkaOW4oeKHbnfJin+DIgUNMC8pzVkZHAVmFk6a6akJz8Fjff2HAxWWPtmew==",
   "success": true,
   "projectFilePath": "E:\\COURSES\\.NET Core\\ProjetosAPI\\APICursosGratuitos\\APICursosGratuitos.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\WORKSTATIONSOUZA\\.nuget\\packages\\fsharp.core\\5.0.1\\fsharp.core.5.0.1.nupkg.sha512",
+    "C:\\Users\\WORKSTATIONSOUZA\\.nuget\\packages\\fsharp.data\\5.0.2\\fsharp.data.5.0.2.nupkg.sha512",
     "C:\\Users\\WORKSTATIONSOUZA\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\WORKSTATIONSOUZA\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\WORKSTATIONSOUZA\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
