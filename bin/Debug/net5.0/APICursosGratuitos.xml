@@ -8,7 +8,7 @@
             <summary>
             Cadastra os alunos nos cursos
             </summary>
-            <param name="alunos">Dados dos alunos</param>
+            <param name="Aluno">Dados dos alunos</param>
             <returns>Dados do aluno cadastrado</returns>
         </member>
         <member name="M:APICursosGratuitos.Controllers.AlunosController.Listar">
@@ -21,15 +21,15 @@
             <summary>
             Altera os dados de um aluno
             </summary>
-            <param name="ra"> RA do Aluno</param>
-            <param name="aluno">Todas as informações do aluno</param>
+            <param name="RA"> RA do Aluno</param>
+            <param name="Aluno">Todas as informações do aluno</param>
             <returns>Aluno Alterado!</returns>
         </member>
         <member name="M:APICursosGratuitos.Controllers.AlunosController.Deletar(System.Int32)">
             <summary>
             Exclui um aluno da aplicação
             </summary>
-            <param name="ra">RA do aluno</param>
+            <param name="RA">RA do aluno</param>
             <returns>Mensagem de exclusão</returns>
         </member>
     </members>

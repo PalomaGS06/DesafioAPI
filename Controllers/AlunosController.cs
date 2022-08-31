@@ -78,7 +78,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Aluno">Todas as informações do aluno</param>
         /// <returns>Aluno Alterado!</returns>
 
-        [HttpPut("{ra}")]
+        [HttpPut("{RA}")]
         public IActionResult Alterar(int RA, Alunos Aluno)
         {
             try
@@ -129,7 +129,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="RA">RA do aluno</param>
         /// <returns>Mensagem de exclusão</returns>
 
-        [HttpDelete("{ra}")]
+        [HttpDelete("{RA}")]
 
         public IActionResult Deletar(int RA)
         {
