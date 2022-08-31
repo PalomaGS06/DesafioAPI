@@ -14,6 +14,8 @@ namespace APICursosGratuitos.Repositories
         //variável de apenas leitura = readonly
         readonly string connection = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
 
+
+        //Deletar aluno através do RA - DELETE
         public bool Delete(int Ra)
         {
             using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
@@ -65,7 +67,7 @@ namespace APICursosGratuitos.Repositories
                         {
                             alunos.Add(new Alunos
                             {
-                                // Cada coluna, inserida pelo Model, representa uma coluna da tabela Alunos, contendo seus respectivos tipo de dado e posição de índice da array
+                                // Cada coluna, criada pelo Model, representa uma coluna da tabela Alunos, contendo seus respectivos tipo de dado e posição de índice da array
                                 Ra = (int)reader[0],
                                 Usuario = (string)reader[1],
                                 Nome = (string)reader[2],
@@ -82,21 +84,57 @@ namespace APICursosGratuitos.Repositories
              return alunos; // retorna a lista alunos
         }
 
+
         // Buscar por Id/RA - GET
-        public Alunos GetById(int id)
+        public Alunos GetById(int ra)
         {
-            throw new System.NotImplementedException();
+            var aluno = new Alunos(); // Objeto criado atraves da classe Alunos
+
+            using (SqlConnection conexao = new SqlConnection(connection))
+            {
+                conexao.Open(); // abre a conexão
+
+                // Escreve a script de busca por RA
+                string consulta = "SELECT * FROM Alunos WHERE RA=@ra";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, conexao))
+                {
+
+                    cmd.Parameters.Add("@ra", SqlDbType.Int).Value = ra;
+
+                    // Ler todos os itens da consulta
+                    using (SqlDataReader result = cmd.ExecuteReader())
+                    {
+                        while (result.Read())
+                        {
+
+                            aluno.Ra = (int)result[0];
+                            aluno.Usuario = (string)result[1];
+                            aluno.Nome = (string)result[2];
+                            aluno.Cpf = (string)result[3];
+                            aluno.Email = (string)result[4];
+                            aluno.Senha = (string)result[5];
+
+                        }
+                    }
+                }
+
+            }
+            return aluno; // retorna o aluno do RA buscado
         }
 
+        //Cadastra os dados do aluno - INSERT 
         public Alunos Insert(Alunos alunos)
         {
             throw new System.NotImplementedException();
         }
 
+        // Edita/Altera algum dado do aluno - UPDATE
         public Alunos Update(int id, Alunos alunos)
         {
             throw new System.NotImplementedException();
         }
+
 
         // Interface com função 'Delete()' implementada
         Alunos IAlunosRepository.Delete(int Ra)
