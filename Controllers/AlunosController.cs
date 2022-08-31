@@ -137,7 +137,7 @@ namespace APICursosGratuitos.Controllers
             {
 
                 var buscarAluno = repositorio.GetById(RA);
-                if (buscarAluno == null)
+                if (buscarAluno is null)
                 {
                     return NotFound();
                 }

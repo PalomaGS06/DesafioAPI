@@ -89,7 +89,7 @@ namespace APICursosGratuitos.Repositories
         // Buscar por Id/RA - GET
         public Alunos GetById(int ra)
         {
-            var aluno = new Alunos(); // Objeto criado atraves da classe Alunos
+            Alunos alunos = null; // Objeto criado atraves da classe Alunos
 
             using (SqlConnection conexao = new SqlConnection(connection))
             {
@@ -108,20 +108,24 @@ namespace APICursosGratuitos.Repositories
                     {
                         while (result.Read())
                         {
+                            alunos = new Alunos
+                            {
+                                Ra = (int)result[0],
+                                Usuario = (string)result[1],
+                                Nome = (string)result[2],
+                                Cpf = (string)result[3],
+                                Email = (string)result[4],
+                                Senha = (string)result[5]
 
-                            aluno.Ra = (int)result[0];
-                            aluno.Usuario = (string)result[1];
-                            aluno.Nome = (string)result[2];
-                            aluno.Cpf = (string)result[3];
-                            aluno.Email = (string)result[4];
-                            aluno.Senha = (string)result[5];
+
+                            };
 
                         }
                     }
                 }
 
             }
-            return aluno; // retorna o aluno do RA buscado
+            return alunos; // retorna o aluno do RA buscado
         }
 
 
@@ -171,10 +175,7 @@ namespace APICursosGratuitos.Repositories
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
                 {
                     //fazemos as declarações das variaveis por parametros
-                    cmd.Parameters.Add("@ra", SqlDbType.Int).Value = ra;
-                    cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar).Value = alunos.Usuario;
-                    cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = alunos.Nome;
-                    cmd.Parameters.Add("@Cpf", SqlDbType.NVarChar).Value = alunos.Cpf;
+
                     cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = alunos.Email;
                     cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
 
