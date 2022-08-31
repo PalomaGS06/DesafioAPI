@@ -168,28 +168,24 @@ namespace APICursosGratuitos.Repositories
             {
                 conexao.Open(); //conexão iniciada
 
-                // escrever a consulta de atualização de dados
-                string script = "UPDATE Alunos SET Usuario=@Usuario, Nome=@Nome, CPF=@Cpf, Email=@Email, Senha=@Senha WHERE RA=@ra";
+                // escrever a consulta de atualização da senha
+                string script = "UPDATE Alunos SET Senha=@Senha WHERE RA=@ra";
 
                 // Criamos o comando de execução no banco
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
                 {
-                    //fazemos as declarações das variaveis por parametros
+                    //fazemos as declarações da variável Senha por parametro
 
-                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = alunos.Email;
-                    cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
+                     cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
 
                     // Tipo de comando, tipo texto. CommandType é um Enum
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
-                    alunos.Ra = ra;
                 }
-
             }
 
             return alunos; // o atributo alterado, do objeto alunos 
         }
-
 
         // Interface com função 'Delete()' implementada
         Alunos IAlunosRepository.Delete(int Ra)

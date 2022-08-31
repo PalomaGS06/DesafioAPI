@@ -72,7 +72,7 @@ namespace APICursosGratuitos.Controllers
 
         // PUT - Alterar
         /// <summary>
-        /// Altera os dados de um aluno
+        /// Altera a senha de um aluno
         /// </summary>
         /// <param name="RA"> RA do Aluno</param>
         /// <param name="Aluno">Todas as informações do aluno</param>
@@ -84,9 +84,12 @@ namespace APICursosGratuitos.Controllers
             try
             {
                 var buscarAluno = repositorio.GetById(RA);
-                if (buscarAluno == null)
+                if (buscarAluno is null)
                 {
-                    return NotFound();
+                    return NotFound(new
+                    {
+                        msg = "RA inválido!"
+                    });
                 }
 
                 var alunoEditado = repositorio.Update(RA, Aluno);
@@ -139,7 +142,10 @@ namespace APICursosGratuitos.Controllers
                 var buscarAluno = repositorio.GetById(RA);
                 if (buscarAluno is null)
                 {
-                    return NotFound();
+                    return NotFound(new
+                    {
+                        msg = "RA inválido!"
+                    });
                 }
 
                 repositorio.Delete(RA);
