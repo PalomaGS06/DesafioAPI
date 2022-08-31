@@ -20,7 +20,7 @@ namespace APICursosGratuitos.Repositories
             {
                 conexao.Open(); // abrir conexão
 
-                // escrever a consulta 
+                // escreve a consulta 
                 string script = "DELETE FROM Alunos WHERE RA=@ra";
 
                 // Comando de execução no banco criado
@@ -43,11 +43,46 @@ namespace APICursosGratuitos.Repositories
             return true;
         }
 
+        // Buscar tudo - GET
         public ICollection<Alunos> GetAll()
         {
-            throw new System.NotImplementedException();
+            var alunos = new List<Alunos>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Alunos
+
+            using (SqlConnection conexao = new SqlConnection(connection))
+            {
+                conexao.Open();
+
+                // Escreve a consulta/script de busca
+                string consulta = "SELECT * FROM Alunos";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, conexao))
+                {
+                    // Ler todos os itens da consulta
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Colunas lidas através de um laço condicional
+                        while (reader.Read())
+                        {
+                            alunos.Add(new Alunos
+                            {
+                                // Cada coluna, inserida pelo Model, representa uma coluna da tabela Alunos, contendo seus respectivos tipo de dado e posição de índice da array
+                                Ra = (int)reader[0],
+                                Usuario = (string)reader[1],
+                                Nome = (string)reader[2],
+                                Cpf = (string)reader[3],
+                                Email = (string)reader[4],
+                                Senha = (string)reader[5]                               
+                            });
+                        }
+                    }
+                }
+
+            }
+
+             return alunos; // retorna a lista alunos
         }
 
+        // Buscar por Id/RA - GET
         public Alunos GetById(int id)
         {
             throw new System.NotImplementedException();
