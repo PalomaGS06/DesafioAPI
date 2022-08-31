@@ -18,16 +18,16 @@ namespace APICursosGratuitos.Controllers
         /// <summary>
         /// Cadastra os alunos nos cursos
         /// </summary>
-        /// <param name="alunos">Dados dos alunos</param>
+        /// <param name="Aluno">Dados dos alunos</param>
         /// <returns>Dados do aluno cadastrado</returns>
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm] Alunos alunos, IFormFile arquivo)
+        public IActionResult Cadastrar( [FromForm] Alunos Aluno)
         {
             try
             {
-                repositorio.Insert(alunos);
-                return Ok(alunos);
+                repositorio.Insert(Aluno);
+                return Ok(Aluno);
                 
             }
             catch (System.Exception e)
@@ -74,23 +74,23 @@ namespace APICursosGratuitos.Controllers
         /// <summary>
         /// Altera os dados de um aluno
         /// </summary>
-        /// <param name="ra"> RA do Aluno</param>
-        /// <param name="aluno">Todas as informações do aluno</param>
+        /// <param name="RA"> RA do Aluno</param>
+        /// <param name="Aluno">Todas as informações do aluno</param>
         /// <returns>Aluno Alterado!</returns>
 
         [HttpPut("{ra}")]
-        public IActionResult Alterar(int ra, Alunos aluno)
+        public IActionResult Alterar(int RA, Alunos Aluno)
         {
             try
             {
-                var buscarAluno = repositorio.GetById(ra);
+                var buscarAluno = repositorio.GetById(RA);
                 if (buscarAluno == null)
                 {
                     return NotFound();
                 }
 
-                var alunoEditado = repositorio.Update(ra, aluno);
-                return Ok(aluno);
+                var alunoEditado = repositorio.Update(RA, Aluno);
+                return Ok(Aluno);
 
             }
             catch (InvalidOperationException e)
@@ -126,23 +126,23 @@ namespace APICursosGratuitos.Controllers
         /// <summary>
         /// Exclui um aluno da aplicação
         /// </summary>
-        /// <param name="ra">RA do aluno</param>
+        /// <param name="RA">RA do aluno</param>
         /// <returns>Mensagem de exclusão</returns>
 
         [HttpDelete("{ra}")]
 
-        public IActionResult Deletar(int ra)
+        public IActionResult Deletar(int RA)
         {
             try
             {
 
-                var buscarAluno = repositorio.GetById(ra);
+                var buscarAluno = repositorio.GetById(RA);
                 if (buscarAluno == null)
                 {
                     return NotFound();
                 }
 
-                repositorio.Delete(ra);
+                repositorio.Delete(RA);
 
                 return Ok(new
                 {

@@ -4,7 +4,7 @@
         <name>APICursosGratuitos</name>
     </assembly>
     <members>
-        <member name="M:APICursosGratuitos.Controllers.AlunosController.Cadastrar(APICursosGratuitos.Models.Alunos,Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:APICursosGratuitos.Controllers.AlunosController.Cadastrar(APICursosGratuitos.Models.Alunos)">
             <summary>
             Cadastra os alunos nos cursos
             </summary>
