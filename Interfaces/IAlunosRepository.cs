@@ -5,6 +5,7 @@ namespace APICursosGratuitos.Interfaces
 {
     public interface IAlunosRepository
     {
+        //SELECT
         ICollection<Alunos> GetAll();
 
         Alunos GetById(int Ra);
