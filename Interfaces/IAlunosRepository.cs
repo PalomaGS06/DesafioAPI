@@ -7,13 +7,13 @@ namespace APICursosGratuitos.Interfaces
     {
         ICollection<Alunos> GetAll();
 
-        Alunos GetById(int id);
+        Alunos GetById(int Ra);
 
         //CREATE
         Alunos Insert(Alunos alunos);
 
         //UPDATE
-        Alunos Update(int id, Alunos alunos);
+        Alunos Update(int Ra, Alunos alunos);
 
         //DELETE
         Alunos Delete(int Ra);

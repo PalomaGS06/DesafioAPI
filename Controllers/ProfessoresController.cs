@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APICursosGratuitos.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace APICursosGratuitos.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProfessoresController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            
-        }
+        private ProfessoresRepository repositorio = new ProfessoresRepository();
+       
     }
 }

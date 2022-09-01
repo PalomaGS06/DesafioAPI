@@ -87,7 +87,7 @@ namespace APICursosGratuitos.Repositories
 
 
         // Buscar por Id/RA - GET
-        public Alunos GetById(int ra)
+        public Alunos GetById(int Ra)
         {
             Alunos alunos = null; // Objeto criado atraves da classe Alunos
 
@@ -101,7 +101,7 @@ namespace APICursosGratuitos.Repositories
                 using (SqlCommand cmd = new SqlCommand(consulta, conexao))
                 {
 
-                    cmd.Parameters.Add("@ra", SqlDbType.Int).Value = ra;
+                    cmd.Parameters.Add("@ra", SqlDbType.Int).Value = Ra;
 
                     // Ler todos os itens da consulta
                     using (SqlDataReader result = cmd.ExecuteReader())
@@ -162,7 +162,7 @@ namespace APICursosGratuitos.Repositories
 
 
         // Edita/Altera algum dado do aluno - UPDATE
-        public Alunos Update(int ra, Alunos alunos)
+        public Alunos Update(int Ra, Alunos alunos)
         {
             using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
             {

@@ -1,7 +1,6 @@
 ﻿namespace APICursosGratuitos.Repositories
 {
-    public class ProfessoresRepository 
+    public class ProfessoresRepository : IProfessorRepository
     {
-
     }
 }
