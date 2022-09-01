@@ -19,7 +19,7 @@
         </member>
         <member name="M:APICursosGratuitos.Controllers.AlunosController.Alterar(System.Int32,APICursosGratuitos.Models.Alunos)">
             <summary>
-            Altera os dados de um aluno
+            Altera a senha de um aluno
             </summary>
             <param name="RA"> RA do Aluno</param>
             <param name="Aluno">Todas as informações do aluno</param>
@@ -30,6 +30,34 @@
             Exclui um aluno da aplicação
             </summary>
             <param name="RA">RA do aluno</param>
+            <returns>Mensagem de exclusão</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.ProfessoresController.Cadastrar(APICursosGratuitos.Models.Professores)">
+            <summary>
+            Cadastra os professores na aplicação
+            </summary>
+            <param name="Professores">Dados dos professores</param>
+            <returns>Dados do prof cadastrados com sucesso</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.ProfessoresController.Listar">
+            <summary>
+            Lista todos os professores existentes
+            </summary>
+            <returns>Lista de Professores</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.ProfessoresController.Alterar(System.Int32,APICursosGratuitos.Models.Professores)">
+            <summary>
+            Altera o email de um professor
+            </summary>
+            <param name="Cpf"> CPF do Professor</param>
+            <param name="Professor">Todas as informações do Professor</param>
+            <returns>Email Alterado!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.ProfessoresController.Deletar(System.Int32)">
+            <summary>
+            Exclui um professor da aplicação
+            </summary>
+            <param name="Cpf">CPF do professor</param>
             <returns>Mensagem de exclusão</returns>
         </member>
     </members>

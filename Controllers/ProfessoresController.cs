@@ -75,7 +75,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Professor">Todas as informações do Professor</param>
         /// <returns>Email Alterado!</returns>
 
-        [HttpPut("{CPF}")]
+        [HttpPut("{Cpf}")]
         public IActionResult Alterar(int Cpf, Professores Professor)
         {
             try
@@ -129,7 +129,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Cpf">CPF do professor</param>
         /// <returns>Mensagem de exclusão</returns>
 
-        [HttpDelete("{CPF}")]
+        [HttpDelete("{Cpf}")]
 
         public IActionResult Deletar(int Cpf)
         {

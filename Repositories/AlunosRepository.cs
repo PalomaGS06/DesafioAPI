@@ -176,11 +176,13 @@ namespace APICursosGratuitos.Repositories
                 {
                     //fazemos as declarações da variável Senha por parametro
 
-                     cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
+                    cmd.Parameters.Add("@ra", SqlDbType.Int).Value = Ra;
+                    cmd.Parameters.Add("@Senha", SqlDbType.NVarChar).Value = alunos.Senha;
 
                     // Tipo de comando, tipo texto. CommandType é um Enum
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
+                    alunos.Ra = Ra;
                 }
             }
 

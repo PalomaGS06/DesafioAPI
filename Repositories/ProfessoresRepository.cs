@@ -41,9 +41,7 @@ namespace APICursosGratuitos.Repositories
 
                 }
 
-              return true;
-            
-
+              return true;            
         }
 
         //Buscar tudo - GET
@@ -159,6 +157,7 @@ namespace APICursosGratuitos.Repositories
                 // Criamos o comando de execução no banco
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
                 {
+                    cmd.Parameters.Add("@Cpf", SqlDbType.Int).Value = Cpf;
                     //Declarações da variável Email por parametro
                     cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = profs.Email;
 
