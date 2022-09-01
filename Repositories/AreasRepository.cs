@@ -3,6 +3,6 @@
 namespace APICursosGratuitos.Repositories
 {
     public class AreasRepository : IAreasRepository
-    {
+    { 
     }
 }
