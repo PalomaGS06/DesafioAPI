@@ -1,4 +1,5 @@
-﻿using APICursosGratuitos.Models;
+﻿using APICursosGratuitos.Interfaces;
+using APICursosGratuitos.Models;
 using APICursosGratuitos.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +12,13 @@ namespace APICursosGratuitos.Controllers
     [ApiController]
     public class AlunosController : ControllerBase
     {
-        private AlunosRepository repositorio = new AlunosRepository();
-        
+        private IAlunosRepository _alunosRepository;
+        public AlunosController(IAlunosRepository alunosRepository)
+        {
+            _alunosRepository = alunosRepository;
+        }
+
+
 
         // POST - Cadastrar
         /// <summary>
@@ -26,7 +32,7 @@ namespace APICursosGratuitos.Controllers
         {
             try
             {
-                repositorio.Insert(Aluno);
+                _alunosRepository.Insert(Aluno);
                 return Ok(Aluno);
                 
             }
@@ -53,7 +59,7 @@ namespace APICursosGratuitos.Controllers
             try
             {
 
-                var alunos = repositorio.GetAll();
+                var alunos = _alunosRepository.GetAll();
                 return Ok(alunos); //retorna a lista de alunos
 
             }
@@ -83,7 +89,7 @@ namespace APICursosGratuitos.Controllers
         {
             try
             {
-                var buscarAluno = repositorio.GetById(RA);
+                var buscarAluno = _alunosRepository.GetById(RA);
                 if (buscarAluno is null)
                 {
                     return NotFound(new
@@ -92,7 +98,7 @@ namespace APICursosGratuitos.Controllers
                     });
                 }
 
-                var alunoEditado = repositorio.Update(RA, Aluno);
+                var alunoEditado = _alunosRepository.Update(RA, Aluno);
                 return Ok(Aluno);
 
             }
@@ -139,7 +145,7 @@ namespace APICursosGratuitos.Controllers
             try
             {
 
-                var buscarAluno = repositorio.GetById(RA);
+                var buscarAluno = _alunosRepository.GetById(RA);
                 if (buscarAluno is null)
                 {
                     return NotFound(new
@@ -148,7 +154,7 @@ namespace APICursosGratuitos.Controllers
                     });
                 }
 
-                repositorio.Delete(RA);
+                _alunosRepository.Delete(RA);
 
                 return Ok(new
                 {

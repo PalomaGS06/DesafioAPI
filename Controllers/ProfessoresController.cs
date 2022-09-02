@@ -1,4 +1,5 @@
-﻿using APICursosGratuitos.Models;
+﻿using APICursosGratuitos.Interfaces;
+using APICursosGratuitos.Models;
 using APICursosGratuitos.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,11 @@ namespace APICursosGratuitos.Controllers
     [ApiController]
     public class ProfessoresController : ControllerBase
     {
-        private ProfessoresRepository repositorio = new ProfessoresRepository();
+        private IProfessoresRepository _profsRepository;
+        public ProfessoresController(IProfessoresRepository profsRepository)
+        {
+            _profsRepository = profsRepository;
+        }
         // POST - Cadastrar
         /// <summary>
         /// Cadastra os professores na aplicação
@@ -23,7 +28,7 @@ namespace APICursosGratuitos.Controllers
         {
             try
             {
-                repositorio.Insert(Professores);
+                _profsRepository.Insert(Professores);
                 return Ok(Professores);
 
             }
@@ -50,7 +55,7 @@ namespace APICursosGratuitos.Controllers
             try
             {
 
-                var prof = repositorio.GetAll();
+                var prof = _profsRepository.GetAll();
                 return Ok(prof); //retorna a lista de professores
 
             }
@@ -80,7 +85,7 @@ namespace APICursosGratuitos.Controllers
         {
             try
             {
-                var buscarProf = repositorio.GetById(Cpf);
+                var buscarProf = _profsRepository.GetById(Cpf);
                 if (buscarProf is null)
                 {
                     return NotFound(new
@@ -89,7 +94,7 @@ namespace APICursosGratuitos.Controllers
                     });
                 }
 
-                var profEditado = repositorio.Update(Cpf, Professor);
+                var profEditado = _profsRepository.Update(Cpf, Professor);
                 return Ok(Professor);
 
             }
@@ -136,7 +141,7 @@ namespace APICursosGratuitos.Controllers
             try
             {
 
-                var buscarProf = repositorio.GetById(Cpf);
+                var buscarProf = _profsRepository.GetById(Cpf);
                 if (buscarProf is null)
                 {
                     return NotFound(new
@@ -145,7 +150,7 @@ namespace APICursosGratuitos.Controllers
                     });
                 }
 
-                repositorio.Delete(Cpf);
+                _profsRepository.Delete(Cpf);
 
                 return Ok(new
                 {

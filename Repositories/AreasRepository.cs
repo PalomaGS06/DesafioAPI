@@ -8,11 +8,11 @@ namespace APICursosGratuitos.Repositories
         public AreasRepository(IConfiguration configuration)
         {
             Configuration = configuration;
-            connectionString = Configuration.GetConnectionString("CursosGratuitos"); // String de conexão chamado através do arquivo appsettings.json
+            connectionCall = Configuration.GetConnectionString("CursosGratuitos"); // String de conexão chamado através do arquivo appsettings.json
         }
 
         public IConfiguration Configuration { get; set; }
-        private string connectionString { get; set; }
+        private string connectionCall { get; set; }
 
 
 
