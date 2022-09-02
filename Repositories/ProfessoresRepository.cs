@@ -1,5 +1,6 @@
 ﻿using APICursosGratuitos.Interfaces;
 using APICursosGratuitos.Models;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,6 +9,16 @@ namespace APICursosGratuitos.Repositories
 {
     public class ProfessoresRepository : IProfessoresRepository
     {
+        public ProfessoresRepository(IConfiguration configuration)
+        {
+            Configuration = configuration;
+            connectionn = Configuration.GetConnectionString("CursosGratuitos"); // String de conexão chamado através do arquivo appsettings.json
+        }
+
+        public IConfiguration Configuration { get; set; }
+        private string connectionn { get; set; }
+
+
         // Cria uma string de conexão com o Banco de Dados
         //variável de apenas leitura = readonly
 
