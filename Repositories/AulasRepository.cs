@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 namespace APICursosGratuitos.Repositories
 {
     public class AulasRepository : IAulasRepository
-    {
+    { 
         public AulasRepository(IConfiguration configuration)
         {
             Configuration = configuration;
