@@ -1,5 +1,7 @@
 ﻿using APICursosGratuitos.Interfaces;
 using APICursosGratuitos.Models;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,11 +12,21 @@ namespace APICursosGratuitos.Repositories
 
     public class AlunosRepository : IAlunosRepository
     {
+        public AlunosRepository(IConfiguration configuration)
+        {
+            Configuration = configuration;
+            connectionString = Configuration.GetConnectionString("CursosGratuitos"); // String de conexão chamado através do arquivo appsettings.json
+        }
+
+        public IConfiguration Configuration { get; set; }
+        private string connectionString { get; set; }
+
+
         // Criar string de conexão com o Banco de Dados
         //variável de apenas leitura = readonly
         readonly string connection = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
-
-
+        
+        
         //Deletar aluno através do RA - DELETE
         public bool Delete(int Ra)
         {
