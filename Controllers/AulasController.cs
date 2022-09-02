@@ -2,6 +2,8 @@
 
 namespace APICursosGratuitos.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AulasController : Controller
     {
 

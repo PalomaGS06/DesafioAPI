@@ -2,11 +2,10 @@
 
 namespace APICursosGratuitos.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AlunoCursoController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }
