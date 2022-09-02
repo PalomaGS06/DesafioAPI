@@ -67,7 +67,8 @@ namespace APICursosGratuitos.Repositories
                                     C.CargaHoraria AS 'Hora_Cursos',
                                     C.Imagem AS 'Imagem_Cursos',
                                     C.AreaId AS 'Id_Area_Cursos',
-                                    A.Area 
+                                    A.Area,
+                                    A.Imagem
                                     FROM Cursos AS C 
                                     INNER JOIN Areas AS A ON C.AreaId = A.Id";
 
@@ -160,7 +161,7 @@ namespace APICursosGratuitos.Repositories
                 {
                     //As declarações das variaveis por parametros são feitas
                     cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = cursos.Nome;
-                    cmd.Parameters.Add("@CargaHoraria", SqlDbType.NVarChar).Value = cursos.CargaHoraria;
+                    cmd.Parameters.Add("@CargaHoraria", SqlDbType.Int).Value = cursos.CargaHoraria;
                     cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = cursos?.Area?.Id ?? 0;
                     cmd.Parameters.Add("@Imagem", SqlDbType.NVarChar).Value = cursos.Imagem;
 
