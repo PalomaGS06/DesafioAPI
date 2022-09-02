@@ -93,7 +93,7 @@ namespace APICursosGratuitos.Controllers
 
         // PUT - Alterar
         /// <summary>
-        /// Altera um curso
+        /// Altera um curso e imagem
         /// </summary>
         /// <param name="id">Id do curso</param>
         /// <param name="cursos">Todas as informações do curso </param>
