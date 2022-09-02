@@ -11,7 +11,7 @@ namespace APICursosGratuitos.Interfaces
         Areas GetById(int id);
 
         //CREATE
-        Areas Insert(Areas areass);
+        Areas Insert(Areas areas);
 
         //UPDATE
         Areas Update(int id, Areas areas);
