@@ -42,7 +42,7 @@ namespace APICursosGratuitos.Controllers
                 {
                     return BadRequest(new
                     {
-                        msg = "A imagem da àrea é obrigatória! Por favor, inserir uma imagem"
+                        msg = "A imagem da àrea é obrigatória! Por favor, inserir uma imagem!"
                     });
                 }
                 else
@@ -97,28 +97,28 @@ namespace APICursosGratuitos.Controllers
 
         // PUT - Alterar
         /// <summary>
-        /// Altera o email de um professor
+        /// Altera uma area e imagem
         /// </summary>
-        /// <param name="Cpf"> CPF do Professor</param>
-        /// <param name="Professor">Todas as informações do Professor</param>
-        /// <returns>Email Alterado!</returns>
+        /// <param name="id">Id da área</param>
+        /// <param name="areas">Todas as informações da Área </param>
+        /// <returns>Dados Alterados!</returns>
 
-        [HttpPut("{Cpf}")]
-        public IActionResult Alterar(int Cpf, Professores Professor)
+        [HttpPut("{id}")]
+        public IActionResult Alterar(int id, Areas areas)
         {
             try
             {
-                var buscarProf = _areasRepository.GetById(Cpf);
-                if (buscarProf is null)
+                var buscarArea = _areasRepository.GetById(id);
+                if (buscarArea is null)
                 {
                     return NotFound(new
                     {
-                        msg = "CPF inválido!"
+                        msg = "ID inválido!"
                     });
                 }
 
-                var profEditado = _areasRepository.Update(Cpf, Professor);
-                return Ok(Professor);
+                var AreaAlterada = _areasRepository.Update(id, areas);
+                return Ok(areas);
 
             }
             catch (InvalidOperationException e)
@@ -152,32 +152,31 @@ namespace APICursosGratuitos.Controllers
 
         // DELETE - Excluir
         /// <summary>
-        /// Exclui um professor da aplicação
+        /// Exclui uma área da aplicação
         /// </summary>
-        /// <param name="Cpf">CPF do professor</param>
+        /// <param name="id">Id da área</param>
         /// <returns>Mensagem de exclusão</returns>
 
-        [HttpDelete("{Cpf}")]
+        [HttpDelete("{id}")]
 
-        public IActionResult Deletar(int Cpf)
+        public IActionResult Deletar(int id)
         {
             try
             {
-
-                var buscarProf = _areasRepository.GetById(Cpf);
-                if (buscarProf is null)
+                var buscarArea = _areasRepository.GetById(id);
+                if (buscarArea is null)
                 {
                     return NotFound(new
                     {
-                        msg = "CPF inválido!"
+                        msg = " ID inválido!"
                     });
                 }
 
-                _areasRepository.Delete(Cpf);
+                _areasRepository.Delete(id);
 
                 return Ok(new
                 {
-                    msg = "Professor excluído com sucesso!"
+                    msg = "Área excluída com sucesso!"
                 });
             }
             catch (System.Exception e)

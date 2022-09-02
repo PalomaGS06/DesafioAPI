@@ -51,9 +51,6 @@ namespace APICursosGratuitos.Utils
         }
 
 
-        // Remover arquivo
-
-
         // Validar extensão de arquivo
         public static bool ValidarExtensao(string[] extensoesPermitidas, string nomeArquivo)
         {
