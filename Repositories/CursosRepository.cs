@@ -172,7 +172,7 @@ namespace APICursosGratuitos.Repositories
             return cursos; //retorna a area criada
         }
 
-        //Altera os dados da classe
+        //Altera o nome e imagem da classe
         public Cursos Update(int id, Cursos cursos)
         {
             using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
