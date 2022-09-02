@@ -126,8 +126,13 @@ namespace APICursosGratuitos.Repositories
                                 Id = (int)result[0],
                                 Nome = (string)result[1],
                                 CargaHoraria = (int)result[2],
-                                Area = (Areas)result[3],
-                                Imagem = (string)result[4]
+                                Area = new Areas
+                                {
+                                    Id = (int)result[3],
+                                    Area = null,
+                                    Imagem = null
+                                },
+                            Imagem = (string)result[4]
                             };
 
                         }
@@ -138,9 +143,31 @@ namespace APICursosGratuitos.Repositories
             return cursos; // retorna o cursos selecionado através do Id
         }
 
+        //Cadastra um curso
         public Cursos Insert(Cursos cursos)
         {
-            throw new System.NotImplementedException();
+            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            {
+                conexao.Open();   // Abre uma conexao
+
+                // escrever a consulta de inserção
+                string script = "INSERT INTO Cursos (Nome, CargaHoraria, AreaId, Imagem) VALUES (@Nome, @CargaHoraria, @AreaId, @Imagem)";
+
+                // O comando de execução no banco é criado
+                using (SqlCommand cmd = new SqlCommand(script, conexao))
+                {
+                    //As declarações das variaveis por parametros são feitas
+                    cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = cursos.Nome;
+                    cmd.Parameters.Add("@CargaHoraria", SqlDbType.NVarChar).Value = cursos.CargaHoraria;
+                    cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = cursos?.Area?.Id ?? 0;
+                    cmd.Parameters.Add("@Imagem", SqlDbType.NVarChar).Value = cursos.Imagem;
+
+                    cmd.CommandType = CommandType.Text; // Tipo de comando Enum, do tipo texto.
+                    cmd.ExecuteNonQuery(); //returna o número de linhas afetadas
+                }
+            }
+
+            return cursos; //retorna a area criada
         }
 
         public Cursos Update(int id, Cursos cursos)
