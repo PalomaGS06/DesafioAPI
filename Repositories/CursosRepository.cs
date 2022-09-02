@@ -53,7 +53,51 @@ namespace APICursosGratuitos.Repositories
 
         public ICollection<Cursos> GetAll()
         {
-            throw new System.NotImplementedException();
+            var cursos = new List<Cursos>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Cursos
+
+            using (SqlConnection conexao = new SqlConnection(connectionString))
+            {
+                conexao.Open();
+
+                // Escreve a consulta/script de busca
+                string consulta = @"SELECT 
+                                    C.Id AS 'Id_Cursos',
+                                    C.Nome AS 'Nome_Cursos',
+                                    C.CargaHoraria AS 'Hora_Cursos',
+                                    C.Imagem AS 'Imagem_Cursos',
+                                    C.AreaId AS 'Id_Area_Cursos',
+                                    A.Area 
+                                    FROM Cursos AS C 
+                                    INNER JOIN Areas AS A ON C.AreaId = A.Id";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, conexao))
+                {
+                    // Lê todos os itens da consulta
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Usando o laço while 
+                        while (reader.Read() && reader != null)
+                        {
+                            cursos.Add(new Cursos
+                            {
+                                Id = (int)reader["Id_Cursos"],
+                                Nome = (string)(reader["Nome_Cursos"]),
+                                CargaHoraria = (int)reader["Hora_Cursos"],
+                                Area = new Areas
+                                {
+                                    Id = (int)reader["Id_Area_Cursos"],
+                                    Area = (string)reader[5],
+                                    Imagem = (string)reader[6]
+                                },
+                                Imagem = (string)reader["Imagem_Cursos"]
+                            });
+                        }
+                    }
+                }
+
+            }
+
+            return cursos;
         }
 
         public Cursos GetById(int id)
