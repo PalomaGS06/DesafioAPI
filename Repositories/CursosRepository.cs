@@ -51,6 +51,7 @@ namespace APICursosGratuitos.Repositories
             return true;
         }
 
+        //Lista tudo
         public ICollection<Cursos> GetAll()
         {
             var cursos = new List<Cursos>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Cursos
@@ -100,6 +101,7 @@ namespace APICursosGratuitos.Repositories
             return cursos;
         }
 
+        //Busca pelo Id
         public Cursos GetById(int id)
         {
             Cursos cursos = null; // Objeto criado atraves da classe Cursos
@@ -170,9 +172,31 @@ namespace APICursosGratuitos.Repositories
             return cursos; //retorna a area criada
         }
 
+        //Altera os dados da classe
         public Cursos Update(int id, Cursos cursos)
         {
-            throw new System.NotImplementedException();
+            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            {
+                conexao.Open(); //conexão iniciada
+
+                // escrever a consulta de atualização dos dados
+                string script = "UPDATE Cursos SET Nome=@Nome, Imagem=@Imagem WHERE Id=@id";
+
+                // Criamos o comando de execução no banco
+                using (SqlCommand cmd = new SqlCommand(script, conexao))
+                {
+                    //Declarações das variáveis por parametro
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = cursos.Id;
+                    cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = cursos.Nome;
+                    cmd.Parameters.Add("@Imagem", SqlDbType.NVarChar).Value = cursos.Imagem;
+
+                    // Tipo de comando, tipo texto
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            return cursos; //campo alterado 
         }
 
         Cursos ICursosRepository.Delete(int id)
