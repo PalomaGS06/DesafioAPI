@@ -102,7 +102,40 @@ namespace APICursosGratuitos.Repositories
 
         public Cursos GetById(int id)
         {
-            throw new System.NotImplementedException();
+            Cursos cursos = null; // Objeto criado atraves da classe Cursos
+
+            using (SqlConnection conexao = new SqlConnection(connectionString))
+            {
+                conexao.Open(); // abre a conexão
+
+                // Escreve a script de busca por id
+                string consulta = "SELECT * FROM Cursos WHERE Id=@id";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, conexao))
+                {
+
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+                    // Ler todos os itens da consulta
+                    using (SqlDataReader result = cmd.ExecuteReader())
+                    {
+                        while (result.Read())
+                        {
+                            cursos = new Cursos
+                            {
+                                Id = (int)result[0],
+                                Nome = (string)result[1],
+                                CargaHoraria = (int)result[2],
+                                Area = (Areas)result[3],
+                                Imagem = (string)result[4]
+                            };
+
+                        }
+                    }
+                }
+
+            }
+            return cursos; // retorna o cursos selecionado através do Id
         }
 
         public Cursos Insert(Cursos cursos)
