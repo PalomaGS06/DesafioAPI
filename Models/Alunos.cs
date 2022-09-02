@@ -13,12 +13,12 @@ namespace APICursosGratuitos.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Informar seu CPF!")]
-        [RegularExpression("..+\\..+\\-.+", ErrorMessage = "Informar seu CPF com as separações!!")]
-        [MinLength(14)]
+        //[RegularExpression("..+\\..+\\-.+", ErrorMessage = "Informar seu CPF com as separações!!")]
+        [MaxLength(14)]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "Informar seu email!")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informar um email válido!!")]
+       // [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informar um email válido!!")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Informar sua senha!")]
