@@ -4,6 +4,34 @@
         <name>APICursosGratuitos</name>
     </assembly>
     <members>
+        <member name="M:APICursosGratuitos.Controllers.AlunoCursoController.Cadastrar(APICursosGratuitos.Models.AlunoCurso)">
+            <summary>
+            Cadastra os ids dos alunos e cursos
+            </summary>
+            <param name="alunoCurso">Dados dos alunos e cursos </param>
+            <returns>Ids dos alunos e cursos cadastrados com sucesso!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AlunoCursoController.Listar">
+            <summary>
+            Lista todas os alunos e cursos existentes 
+            </summary>
+            <returns>Lista de Alunos e Cursos</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AlunoCursoController.Alterar(System.Int32,APICursosGratuitos.Models.AlunoCurso)">
+            <summary>
+            Altera um id
+            </summary>
+            <param name="id">Id do aluno e curso</param>
+            <param name="alunoCurso">Todas as informações do aluno e curso </param>
+            <returns>AlunoCurso Alterado!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AlunoCursoController.Deletar(System.Int32)">
+            <summary>
+            Exclui um aluno e curso da aplicação
+            </summary>
+            <param name="id">Ids dos alunos e cursos</param>
+            <returns>Mensagem de exclusão!</returns>
+        </member>
         <member name="M:APICursosGratuitos.Controllers.AlunosController.Cadastrar(APICursosGratuitos.Models.Alunos)">
             <summary>
             Cadastra os alunos nos cursos
@@ -31,6 +59,90 @@
             </summary>
             <param name="RA">RA do aluno</param>
             <returns>Mensagem de exclusão</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AreasController.Cadastrar(APICursosGratuitos.Models.Areas,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Cadastra as áreas existentes
+            </summary>
+            <param name="areas">Dados das áreas </param>
+            <returns>Dados das areas cadastradas com sucesso!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AreasController.Listar">
+            <summary>
+            Lista todas as areas 
+            </summary>
+            <returns>Lista de Áreas!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AreasController.Alterar(System.Int32,APICursosGratuitos.Models.Areas)">
+            <summary>
+            Altera uma area e imagem
+            </summary>
+            <param name="id">Id da área</param>
+            <param name="areas">Todas as informações da Área </param>
+            <returns>Dados Alterados!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AreasController.Deletar(System.Int32)">
+            <summary>
+            Exclui uma área da aplicação
+            </summary>
+            <param name="id">Id da área</param>
+            <returns>Mensagem de exclusão</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AulasController.Cadastrar(APICursosGratuitos.Models.Aulas)">
+            <summary>
+            Cadastra as aulas
+            </summary>
+            <param name="aulas">Dados das aulas </param>
+            <returns>Dados das aulas cadastrados com sucesso!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AulasController.Listar">
+            <summary>
+            Lista todas as aulas existentes 
+            </summary>
+            <returns>Lista de Aulas</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AulasController.Alterar(System.Int32,APICursosGratuitos.Models.Aulas)">
+            <summary>
+            Altera o título e ementa da aula
+            </summary>
+            <param name="id">Id da aula</param>
+            <param name="aulas">Todas as informações da aula </param>
+            <returns>Aula Alterada!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.AulasController.Deletar(System.Int32)">
+            <summary>
+            Exclui uma aulas da aplicação
+            </summary>
+            <param name="id">Id da aulas</param>
+            <returns>Mensagem de exclusão!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.CursosController.Cadastrar(APICursosGratuitos.Models.Cursos,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Cadastra os cursos
+            </summary>
+            <param name="cursos">Dados dos cursos </param>
+            <returns>Dados dos cursos cadastrados com sucesso!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.CursosController.Listar">
+            <summary>
+            Lista todas os cursos existentes 
+            </summary>
+            <returns>Lista de Cursos</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.CursosController.Alterar(System.Int32,APICursosGratuitos.Models.Cursos)">
+            <summary>
+            Altera um curso e imagem
+            </summary>
+            <param name="id">Id do curso</param>
+            <param name="cursos">Todas as informações do curso </param>
+            <returns>Curso Alterado!</returns>
+        </member>
+        <member name="M:APICursosGratuitos.Controllers.CursosController.Deletar(System.Int32)">
+            <summary>
+            Exclui um curso da aplicação
+            </summary>
+            <param name="id">Id do curso</param>
+            <returns>Mensagem de exclusão!</returns>
         </member>
         <member name="M:APICursosGratuitos.Controllers.ProfessoresController.Cadastrar(APICursosGratuitos.Models.Professores)">
             <summary>
