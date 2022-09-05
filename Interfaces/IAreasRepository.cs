@@ -17,6 +17,6 @@ namespace APICursosGratuitos.Interfaces
         Areas Update(int id, Areas areas);
 
         //DELETE
-        Areas Delete(int id);
+        bool Delete(int id);
     }
 }

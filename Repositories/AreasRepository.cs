@@ -21,12 +21,10 @@ namespace APICursosGratuitos.Repositories
         // Cria uma string de conexão com o Banco de Dados
         //variável de apenas leitura = readonly
 
-        readonly string connectionString = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
-
         //Deleta uma area através de seu Id
         public bool Delete(int id)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); // abrir conexão
 
@@ -56,7 +54,7 @@ namespace APICursosGratuitos.Repositories
         {
             var areas = new List<Areas>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Areas
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open();
 
@@ -78,8 +76,8 @@ namespace APICursosGratuitos.Repositories
                             {
                                 // Cada coluna, criada pelo Model, representa uma coluna da tabela Areas, contendo seus respectivos tipo de dado e índice da array
                                 Id = (int)reader["Id_Areas"],
-                                Area = (string)reader["Area"],
-                                Imagem = (string)reader["Img_Areas"]
+                                Area = reader["Area"].ToString(),
+                                Imagem = reader["Img_Areas"].ToString()
                             });
                         }
                     }
@@ -95,7 +93,7 @@ namespace APICursosGratuitos.Repositories
         {
             Areas areas = null; // Objeto criado atraves da classe Areas
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open(); // abre a conexão
 
@@ -115,8 +113,8 @@ namespace APICursosGratuitos.Repositories
                             areas = new Areas
                             {
                                 Id = (int)result[0],
-                                Area = (string)result[1],
-                                Imagem = (string)result[2]
+                                Area = result[1].ToString(),
+                                Imagem = result[2].ToString()
                             };
 
                         }
@@ -130,7 +128,7 @@ namespace APICursosGratuitos.Repositories
         //Cria uma area
         public Areas Insert(Areas areas)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();   // Abre uma conexao
 
@@ -156,7 +154,7 @@ namespace APICursosGratuitos.Repositories
         //Altera os dados da classe Areas
         public Areas Update(int id, Areas areas)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); //conexão iniciada
 
@@ -180,9 +178,6 @@ namespace APICursosGratuitos.Repositories
             return areas; //campo alterado 
         }
 
-        Areas IAreasRepository.Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+ 
     }
 }

@@ -16,18 +16,17 @@ namespace APICursosGratuitos.Repositories
         }
 
         public IConfiguration Configuration { get; set; }
-        private string connectionCall { get; set; }
+
+        private string connectionCall;
+
 
         // Cria uma string de conexão com o Banco de Dados
         //readonly = variável de apenas leitura 
 
-        readonly string connectionString = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
-
-
         //Deleta uma area através de seu Id
         public bool Delete(int id)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); // abrir conexão
 
@@ -56,7 +55,7 @@ namespace APICursosGratuitos.Repositories
         {
             var aulas = new List<Aulas>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Aulas
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open();
 
@@ -67,7 +66,7 @@ namespace APICursosGratuitos.Repositories
                                     A.Imenta AS 'Imenta_Aulas',
                                     A.Duracao AS 'Duracao_Aulas',
                                     A.CursoId AS 'Id_Curso_Aulas',
-                                    A.ProfessorCpf AS 'Cpf_Prof_Aulas',
+                                    A.ProfessorCpf AS 'Cpf_Prof_Aulas'
                                     FROM Aulas AS A 
                                     INNER JOIN Cursos AS C ON A.CursoId = C.Id
                                     INNER JOIN Professores AS P ON A.ProfessorCpf = P.CPF";
@@ -83,8 +82,8 @@ namespace APICursosGratuitos.Repositories
                             aulas.Add(new Aulas
                             {
                                 Id = (int)reader["Id_Aulas"],
-                                Titulo = (string)(reader["Titulo_Aulas"]),
-                                Imenta = (string)reader["Imenta_Aulas"],
+                                Titulo = reader["Titulo_Aulas"].ToString(),
+                                Imenta = reader["Imenta_Aulas"].ToString(),
                                 Duracao = (int)reader["Duracao_Aulas"],
                                 Curso = new Cursos
                                 {
@@ -113,7 +112,7 @@ namespace APICursosGratuitos.Repositories
         {
             Aulas aulas = null; // Objeto criado atraves da classe Aulas
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open(); // abre a conexão
 
@@ -133,8 +132,8 @@ namespace APICursosGratuitos.Repositories
                             aulas = new Aulas
                             {
                                 Id = (int)result[0],
-                                Titulo = (string)result[1],
-                                Imenta = (string)result[2],
+                                Titulo = result[1].ToString(),
+                                Imenta = result[2].ToString(),
                                 Duracao = (int)result[3],
                                 Curso = new Cursos
                                 {
@@ -160,7 +159,7 @@ namespace APICursosGratuitos.Repositories
 
         public Aulas Insert(Aulas aulas)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();   // Abre uma conexao
 
@@ -187,7 +186,7 @@ namespace APICursosGratuitos.Repositories
 
         public Aulas Update(int id, Aulas aulas)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); //conexão iniciada
 

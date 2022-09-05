@@ -22,13 +22,11 @@ namespace APICursosGratuitos.Repositories
         // Cria uma string de conexão com o Banco de Dados
         //variável de apenas leitura = readonly
 
-        readonly string connectionString = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
-
 
         //Deletar o professor através do CPF - DELETE
         public bool Delete(int Cpf)
         {          
-                using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+                using (SqlConnection conexao = new SqlConnection(connectionn)) // dentro do parametro se passa a string de conexao
                 {
                     conexao.Open(); // abrir conexão
 
@@ -60,7 +58,7 @@ namespace APICursosGratuitos.Repositories
         {
             var professores = new List<Professores>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Professores
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionn))
             {
                 conexao.Open();
 
@@ -79,8 +77,8 @@ namespace APICursosGratuitos.Repositories
                             {
                                 // Cada coluna, criada pelo Model, representa uma coluna da tabela Professores, contendo seus respectivos tipo de dado e posição de índice da array
                                 Cpf = (int)reader[0],
-                                Nome = (string)reader[1],
-                                Email = (string)reader[2]
+                                Nome = reader[1].ToString(),
+                                Email = reader[2].ToString()
                             });
                         }
                     }
@@ -96,7 +94,7 @@ namespace APICursosGratuitos.Repositories
         {
             Professores profs = null; // Objeto criado atraves da classe Professores
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionn))
             {
                 conexao.Open(); // abre a conexão
 
@@ -116,9 +114,9 @@ namespace APICursosGratuitos.Repositories
                             profs = new Professores
                             {
                                 Cpf = (int)result[0],                 
-                                Nome = (string)result[1],                               
-                                Email = (string)result[2]
-                               
+                                Nome = result[1].ToString(),                               
+                                Email = result[2].ToString()
+
                             };
 
                         }
@@ -132,7 +130,7 @@ namespace APICursosGratuitos.Repositories
         //Cadastra os dados do professor - INSERT
         public Professores Insert(Professores profs)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionn)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();   // Abre uma conexao
 
@@ -158,7 +156,7 @@ namespace APICursosGratuitos.Repositories
         //Altera algum dado do professor - UPDATE
         public Professores Update(int Cpf, Professores profs)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionn)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); //conexão iniciada
 

@@ -20,14 +20,12 @@ namespace APICursosGratuitos.Repositories
 
         // Cria uma string de conexão com o Banco de Dados
         //readonly = variável de apenas leitura 
-
-        readonly string connectionString = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
-
+               
 
         //Deleta uma area através de seu Id
         public bool Delete(int id)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); // abrir conexão
 
@@ -56,7 +54,7 @@ namespace APICursosGratuitos.Repositories
         {
             var alunoCurso = new List<AlunoCurso>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela AlunoCurso
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open();
 
@@ -91,7 +89,7 @@ namespace APICursosGratuitos.Repositories
         {
             var alunoCurso = new AlunoCurso();
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open();
 
@@ -123,7 +121,7 @@ namespace APICursosGratuitos.Repositories
 
         public AlunoCurso Insert(AlunoCurso alunoCurso)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();
 
@@ -149,7 +147,7 @@ namespace APICursosGratuitos.Repositories
 
         public AlunoCurso Update(int id, AlunoCurso alunoCurso)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();
 

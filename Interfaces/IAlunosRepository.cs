@@ -17,7 +17,7 @@ namespace APICursosGratuitos.Interfaces
         Alunos Update(int Ra, Alunos alunos);
 
         //DELETE
-        Alunos Delete(int Ra);
+        bool Delete(int Ra);
 
 
     }

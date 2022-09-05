@@ -1,3 +1,5 @@
+using APICursosGratuitos.Interfaces;
+using APICursosGratuitos.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -61,6 +63,13 @@ namespace APICursosGratuitos
 
 
             });
+
+                services.AddTransient<IAulasRepository, AulasRepository>();
+                services.AddTransient<IAlunosRepository, AlunosRepository>();
+                services.AddTransient<IProfessoresRepository, ProfessoresRepository>();
+                services.AddTransient<IAreasRepository, AreasRepository>();
+                services.AddTransient<IAlunoCursoRepository, AlunoCursoRepository>();
+                services.AddTransient<ICursosRepository, CursosRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

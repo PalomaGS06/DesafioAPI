@@ -24,13 +24,13 @@ namespace APICursosGratuitos.Repositories
 
         // Criar string de conexão com o Banco de Dados
         //variável de apenas leitura = readonly
-        readonly string connection = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
+        //readonly string connection = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
         
         
         //Deletar aluno através do RA - DELETE
         public bool Delete(int Ra)
         {
-            using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); // abrir conexão
 
@@ -63,7 +63,7 @@ namespace APICursosGratuitos.Repositories
         {
             var alunos = new List<Alunos>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Alunos
 
-            using (SqlConnection conexao = new SqlConnection(connection))
+            using (SqlConnection conexao = new SqlConnection(connectionString))
             {
                 conexao.Open();
 
@@ -82,11 +82,11 @@ namespace APICursosGratuitos.Repositories
                             {
                                 // Cada coluna, criada pelo Model, representa uma coluna da tabela Alunos, contendo seus respectivos tipo de dado e posição de índice da array
                                 Ra = (int)reader[0],
-                                Usuario = (string)reader[1],
-                                Nome = (string)reader[2],
-                                Cpf = (string)reader[3],
-                                Email = (string)reader[4],
-                                Senha = (string)reader[5]                               
+                                Usuario = reader[1].ToString(),
+                                Nome = reader[2].ToString(),
+                                Cpf = reader[3].ToString(),
+                                Email = reader[4].ToString(),
+                                Senha = reader[5].ToString()
                             });
                         }
                     }
@@ -103,7 +103,7 @@ namespace APICursosGratuitos.Repositories
         {
             Alunos alunos = null; // Objeto criado atraves da classe Alunos
 
-            using (SqlConnection conexao = new SqlConnection(connection))
+            using (SqlConnection conexao = new SqlConnection(connectionString))
             {
                 conexao.Open(); // abre a conexão
 
@@ -123,11 +123,11 @@ namespace APICursosGratuitos.Repositories
                             alunos = new Alunos
                             {
                                 Ra = (int)result[0],
-                                Usuario = (string)result[1],
-                                Nome = (string)result[2],
-                                Cpf = (string)result[3],
-                                Email = (string)result[4],
-                                Senha = (string)result[5]
+                                Usuario = result[1].ToString(),
+                                Nome = result[2].ToString(),
+                                Cpf = result[3].ToString(),
+                                Email = result[4].ToString(),
+                                Senha = result[5].ToString()
 
 
                             };
@@ -146,7 +146,7 @@ namespace APICursosGratuitos.Repositories
         {
           
             // parametro que gerencia certos comandos de conexão
-            using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();   // Abre uma conexao
 
@@ -176,7 +176,7 @@ namespace APICursosGratuitos.Repositories
         // Edita/Altera algum dado do aluno - UPDATE
         public Alunos Update(int Ra, Alunos alunos)
         {
-            using (SqlConnection conexao = new SqlConnection(connection)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); //conexão iniciada
 
@@ -202,9 +202,6 @@ namespace APICursosGratuitos.Repositories
         }
 
         // Interface com função 'Delete()' implementada
-        Alunos IAlunosRepository.Delete(int Ra)
-        {
-            throw new System.NotImplementedException();
-        }
+  
     }
 }

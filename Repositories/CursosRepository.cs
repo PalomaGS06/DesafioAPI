@@ -21,12 +21,10 @@ namespace APICursosGratuitos.Repositories
         // Cria uma string de conexão com o Banco de Dados
         //readonly = variável de apenas leitura 
 
-        readonly string connectionString = "Data Source=WORKSTATIONSOUZ\\SQLEXPRESS;Integrated Security=true;Initial Catalog=CursosGratuitos";
-
         //Deleta uma area através de seu Id
         public bool Delete(int id)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); // abrir conexão
 
@@ -56,7 +54,7 @@ namespace APICursosGratuitos.Repositories
         {
             var cursos = new List<Cursos>(); // Criando um objeto do tipo lista para exibir todas as colunas e dados da tabela Cursos
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open();
 
@@ -74,6 +72,7 @@ namespace APICursosGratuitos.Repositories
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conexao))
                 {
+                    cmd.CommandType=CommandType.Text;
                     // Lê todos os itens da consulta
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -83,15 +82,15 @@ namespace APICursosGratuitos.Repositories
                             cursos.Add(new Cursos
                             {
                                 Id = (int)reader["Id_Cursos"],
-                                Nome = (string)(reader["Nome_Cursos"]),
+                                Nome = reader["Nome_Cursos"].ToString(),
                                 CargaHoraria = (int)reader["Hora_Cursos"],
                                 Area = new Areas
                                 {
                                     Id = (int)reader["Id_Area_Cursos"],
-                                    Area = (string)reader[5],
-                                    Imagem = (string)reader[6]
+                                    Area = reader[5].ToString(),
+                                    Imagem = reader[6].ToString()
                                 },
-                                Imagem = (string)reader["Imagem_Cursos"]
+                                Imagem = reader["Imagem_Cursos"].ToString()   
                             });
                         }
                     }
@@ -107,7 +106,7 @@ namespace APICursosGratuitos.Repositories
         {
             Cursos cursos = null; // Objeto criado atraves da classe Cursos
 
-            using (SqlConnection conexao = new SqlConnection(connectionString))
+            using (SqlConnection conexao = new SqlConnection(connectionCall))
             {
                 conexao.Open(); // abre a conexão
 
@@ -149,7 +148,7 @@ namespace APICursosGratuitos.Repositories
         //Cadastra um curso
         public Cursos Insert(Cursos cursos)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open();   // Abre uma conexao
 
@@ -176,7 +175,7 @@ namespace APICursosGratuitos.Repositories
         //Altera o nome e imagem da classe
         public Cursos Update(int id, Cursos cursos)
         {
-            using (SqlConnection conexao = new SqlConnection(connectionString)) // dentro do parametro se passa a string de conexao
+            using (SqlConnection conexao = new SqlConnection(connectionCall)) // dentro do parametro se passa a string de conexao
             {
                 conexao.Open(); //conexão iniciada
 
