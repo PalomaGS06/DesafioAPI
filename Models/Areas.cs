@@ -5,6 +5,7 @@ namespace APICursosGratuitos.Models
 {
     public class Areas
     {
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int Id { get; set; }
 
        

@@ -5,6 +5,7 @@ namespace APICursosGratuitos.Models
 {
     public class Cursos
     {
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Informar o nome do curso!")]
