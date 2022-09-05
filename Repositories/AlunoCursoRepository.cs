@@ -172,10 +172,5 @@ namespace APICursosGratuitos.Repositories
 
             return alunoCurso;
         }
-
-        AlunoCurso IAlunoCursoRepository.Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

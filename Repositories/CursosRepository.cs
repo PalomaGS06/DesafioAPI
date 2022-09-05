@@ -198,10 +198,5 @@ namespace APICursosGratuitos.Repositories
 
             return cursos; //campo alterado 
         }
-
-        Cursos ICursosRepository.Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

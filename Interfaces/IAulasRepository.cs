@@ -18,6 +18,6 @@ namespace APICursosGratuitos.Interfaces
         Aulas Update(int id, Aulas aulas);
 
         //DELETE
-        Aulas Delete(int id);
+        bool Delete(int id);
     }
 }

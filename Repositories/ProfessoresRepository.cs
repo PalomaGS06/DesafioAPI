@@ -179,10 +179,6 @@ namespace APICursosGratuitos.Repositories
             return profs; //atributo alterado, do parâmetro profs 
         }
 
-        Professores IProfessoresRepository.Delete(int Cpf)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 
 }

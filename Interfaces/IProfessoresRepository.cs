@@ -17,6 +17,6 @@ namespace APICursosGratuitos.Interfaces
         Professores Update(int Cpf, Professores profs);
 
         //DELETE
-        Professores Delete(int Cpf);
+        bool Delete(int Cpf);
     }
 }

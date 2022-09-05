@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APICursosGratuitos.Models
 {
@@ -6,11 +7,12 @@ namespace APICursosGratuitos.Models
     {
         public int Cpf { get; set; }
 
-        [Required(ErrorMessage = "Informar seu nome completo!")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        //[Required(ErrorMessage = "Informar seu nome completo!")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Informar seu email!")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informar um email válido!!")]
+        //[Required(ErrorMessage = "Informar seu email!")]
+        //[RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informar um email válido!!")]
         public string Email { get; set; }
 
     }

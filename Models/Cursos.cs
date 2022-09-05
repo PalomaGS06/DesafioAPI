@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APICursosGratuitos.Models
 {
@@ -9,10 +10,12 @@ namespace APICursosGratuitos.Models
         [Required(ErrorMessage = "Informar o nome do curso!")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Informar as horas de curso!")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        //[Required(ErrorMessage = "Informar as horas de curso!")]
         public int CargaHoraria { get; set; }
 
-        [Required(ErrorMessage = "Informar a area do curso!")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        //[Required(ErrorMessage = "Informar a area do curso!")]
         public Areas Area { get; set; }
         public string Imagem { get; set; }
     }

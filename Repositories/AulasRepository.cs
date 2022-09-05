@@ -210,9 +210,5 @@ namespace APICursosGratuitos.Repositories
             return aulas; //campo alterado 
         }
 
-        Aulas IAulasRepository.Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

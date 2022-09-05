@@ -10,8 +10,7 @@ namespace APICursosGratuitos.Models
        
         [Required(ErrorMessage = "Favor, informe uma area!")]
         public string Area { get; set; }
-
-        
+                
         public string Imagem { get; set; }
     }
 }
