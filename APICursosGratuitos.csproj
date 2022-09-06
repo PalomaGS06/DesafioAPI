@@ -15,6 +15,7 @@
 
 
   <ItemGroup>
+	<Folder Include="ImagensAPI\" />
 	<Folder Include="StaticFiles\Images\" />
 	<Folder Include="StaticFiles\Images\" />
   </ItemGroup>
