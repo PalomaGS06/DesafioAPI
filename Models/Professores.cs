@@ -5,7 +5,7 @@ namespace APICursosGratuitos.Models
 {
     public class Professores
     {
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        
         public int Cpf { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

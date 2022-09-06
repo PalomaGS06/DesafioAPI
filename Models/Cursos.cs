@@ -5,7 +5,7 @@ namespace APICursosGratuitos.Models
 {
     public class Cursos
     {
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+       
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Informar o nome do curso!")]
@@ -17,6 +17,7 @@ namespace APICursosGratuitos.Models
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         //[Required(ErrorMessage = "Informar a area do curso!")]
+
         public Areas Area { get; set; }
         public string Imagem { get; set; }
     }

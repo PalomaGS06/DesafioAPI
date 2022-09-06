@@ -129,7 +129,7 @@
             </summary>
             <returns>Lista de Cursos</returns>
         </member>
-        <member name="M:APICursosGratuitos.Controllers.CursosController.Alterar(System.Int32,APICursosGratuitos.Models.Cursos,Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:APICursosGratuitos.Controllers.CursosController.Alterar(System.Int32,APICursosGratuitos.Models.Cursos)">
             <summary>
             Altera um curso e imagem
             </summary>

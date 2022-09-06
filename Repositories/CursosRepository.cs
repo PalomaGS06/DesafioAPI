@@ -180,7 +180,7 @@ namespace APICursosGratuitos.Repositories
                 conexao.Open(); //conexão iniciada
 
                 // escrever a consulta de atualização dos dados
-                string script = "UPDATE Cursos SET Nome=@Nome, Imagem=@Imagem WHERE Id=@id";
+                string script = "UPDATE Cursos SET Nome=@Nome, Imagem=@Imagem, AreaId=@AreaId WHERE Id=@id";
 
                 // Criamos o comando de execução no banco
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
@@ -188,6 +188,7 @@ namespace APICursosGratuitos.Repositories
                     //Declarações das variáveis por parametro
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = cursos.Id;
                     cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = cursos.Nome;
+                    cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = cursos?.Area?.Id ?? 0;
                     cmd.Parameters.Add("@Imagem", SqlDbType.NVarChar).Value = cursos.Imagem;
 
                     // Tipo de comando, tipo texto

@@ -144,10 +144,10 @@ namespace APICursosGratuitos.Repositories
                                 },
                                 Professor = new Professores
                                 {
-                                    Cpf = (int)result[8],
+                                    Cpf = (int)result[5],
                                     Nome = null,
                                     Email = null
-                                },
+                                }
                             };
                         }   
                     }
@@ -164,7 +164,7 @@ namespace APICursosGratuitos.Repositories
                 conexao.Open();   // Abre uma conexao
 
                 // escrever a consulta de inserção
-                string script = "INSERT INTO Aulas (Titulo, Imenta, Duracao, CursoId, ProfessorCpf) VALUES (@Titulo, @Imenta, @Duracao, @CursoId, ProfessorCpf)";
+                string script = "INSERT INTO Aulas (Titulo, Imenta, Duracao, CursoId, ProfessorCpf) VALUES (@Titulo, @Imenta, @Duracao, @CursoId, @ProfessorCpf)";
 
                 // O comando de execução no banco é criado
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
@@ -173,8 +173,8 @@ namespace APICursosGratuitos.Repositories
                     cmd.Parameters.Add("@Titulo", SqlDbType.NVarChar).Value = aulas.Titulo;
                     cmd.Parameters.Add("@Imenta", SqlDbType.NVarChar).Value = aulas.Imenta;
                     cmd.Parameters.Add("@Duracao", SqlDbType.Int).Value = aulas.Duracao;
-                    cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = aulas?.Curso?.Id ?? 0;
-                    cmd.Parameters.Add("@Imagem", SqlDbType.Int).Value = aulas?.Professor?.Cpf ?? 0;
+                    cmd.Parameters.Add("@CursoId", SqlDbType.Int).Value = aulas?.Curso?.Id ?? 0;
+                    cmd.Parameters.Add("@ProfessorCpf", SqlDbType.Int).Value = aulas?.Professor?.Cpf ?? 0;
 
                     cmd.CommandType = CommandType.Text; // Tipo de comando Enum, do tipo texto.
                     cmd.ExecuteNonQuery(); //returna o número de linhas afetadas
@@ -191,7 +191,7 @@ namespace APICursosGratuitos.Repositories
                 conexao.Open(); //conexão iniciada
 
                 // escrever a consulta de atualização dos dados
-                string script = "UPDATE Aulas SET Titulo=@Titulo, Imenta=@Imenta WHERE Id=@id";
+                string script = "UPDATE Aulas SET Titulo=@Titulo, Imenta=@Imenta, CursoId=@CursoId, ProfessorCpf=@ProfessorCpf WHERE Id=@id";
 
                 // Criamos o comando de execução no banco
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
@@ -200,6 +200,8 @@ namespace APICursosGratuitos.Repositories
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = aulas.Id;
                     cmd.Parameters.Add("@Titulo", SqlDbType.NVarChar).Value = aulas.Titulo;
                     cmd.Parameters.Add("@Imenta", SqlDbType.NVarChar).Value = aulas.Imenta;
+                    cmd.Parameters.Add("@CursoId", SqlDbType.Int).Value = aulas?.Curso?.Id ?? 0;
+                    cmd.Parameters.Add("@ProfessorCpf", SqlDbType.Int).Value = aulas?.Professor?.Cpf ?? 0;
 
                     // Tipo de comando, tipo texto
                     cmd.CommandType = CommandType.Text;

@@ -100,28 +100,10 @@ namespace APICursosGratuitos.Controllers
         /// <returns>Curso Alterado!</returns>
 
         [HttpPut("{id}")]
-        public IActionResult Alterar(int id, [FromForm] Cursos cursos, IFormFile arquivo)
+        public IActionResult Alterar(int id, Cursos cursos)
         {
             try
-            {
-                #region Upload de Imagem
-                string[] extensoesPermitidas = { "jpeg", "jpg", "png", "svg" };
-                string uploadResultado = Upload.UploadFile(arquivo, extensoesPermitidas, "Images");
-
-                if (uploadResultado == "")
-                {
-                    return BadRequest("Arquivo não encontrado ou extensão não permitida!");
-                }
-                else if (uploadResultado is null)
-                {
-                    cursos.Imagem = "Null";
-                }
-                else
-                {
-                    cursos.Imagem = uploadResultado;
-                }
-                #endregion
-
+            {              
 
                 var buscarCurso = _cursosRepository.GetById(id);
                 if (buscarCurso is null)
