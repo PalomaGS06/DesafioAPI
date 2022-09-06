@@ -104,10 +104,11 @@ namespace APICursosGratuitos.Controllers
         /// <returns>Dados Alterados!</returns>
 
         [HttpPut("{id}")]
-        public IActionResult Alterar(int id, Areas areas)
+        public IActionResult Alterar(int id, [FromForm] Areas areas, IFormFile arquivo)
         {
             try
             {
+                
                 var buscarArea = _areasRepository.GetById(id);
                 if (buscarArea is null)
                 {
@@ -116,6 +117,27 @@ namespace APICursosGratuitos.Controllers
                         msg = "ID inválido!"
                     });
                 }
+                #region Upload de Imagem
+                string[] extensoesPermitidas = { "jpeg", "jpg", "png", "svg" };
+                string uploadResultado = Upload.UploadFile(arquivo, extensoesPermitidas, "Images");
+
+                if (uploadResultado == "")
+                {
+                    return BadRequest("Arquivo não encontrado ou extensão não permitida!");
+                }
+                else if (uploadResultado is null)
+                {
+                    return BadRequest(new
+                    {
+                        msg = "A imagem da àrea é obrigatória! Por favor, inserir uma imagem!"
+                    });
+                }
+                else
+                {
+                    areas.Imagem = uploadResultado;
+                }
+                #endregion
+
 
                 var AreaAlterada = _areasRepository.Update(id, areas);
                 return Ok(areas);

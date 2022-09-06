@@ -23,7 +23,7 @@ namespace APICursosGratuitos.Controllers
         /// <returns>Ids dos alunos e cursos cadastrados com sucesso!</returns>
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm] AlunoCurso alunoCurso)
+        public IActionResult Cadastrar( AlunoCurso alunoCurso)
         {
             try
             {                

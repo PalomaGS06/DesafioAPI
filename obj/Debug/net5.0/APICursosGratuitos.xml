@@ -73,7 +73,7 @@
             </summary>
             <returns>Lista de Áreas!</returns>
         </member>
-        <member name="M:APICursosGratuitos.Controllers.AreasController.Alterar(System.Int32,APICursosGratuitos.Models.Areas)">
+        <member name="M:APICursosGratuitos.Controllers.AreasController.Alterar(System.Int32,APICursosGratuitos.Models.Areas,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             Altera uma area e imagem
             </summary>
@@ -129,7 +129,7 @@
             </summary>
             <returns>Lista de Cursos</returns>
         </member>
-        <member name="M:APICursosGratuitos.Controllers.CursosController.Alterar(System.Int32,APICursosGratuitos.Models.Cursos)">
+        <member name="M:APICursosGratuitos.Controllers.CursosController.Alterar(System.Int32,APICursosGratuitos.Models.Cursos,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             Altera um curso e imagem
             </summary>
