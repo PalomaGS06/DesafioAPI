@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 namespace APICursosGratuitos.Controllers
 {
+    //rota criada para a url de entrada
     [Route("api/[controller]")]
     [ApiController]
     public class AreasController : ControllerBase
@@ -25,8 +26,9 @@ namespace APICursosGratuitos.Controllers
         /// <param name="areas">Dados das áreas </param>
         /// <returns>Dados das areas cadastradas com sucesso!</returns>
 
-        [HttpPost]
-        public IActionResult Cadastrar([FromForm] Areas areas, IFormFile arquivo)
+        [HttpPost] //Rota de ação http de inserção (POST)
+        public IActionResult Cadastrar([FromForm] Areas areas, IFormFile arquivo) 
+            //IFormFile é um formulário que serve para fazer o upload de arquivos, extrai atraves de pastas e locais da máquina do usuário 
         {
             try
             {
@@ -72,7 +74,7 @@ namespace APICursosGratuitos.Controllers
         /// Lista todas as areas 
         /// </summary>
         /// <returns>Lista de Áreas!</returns>
-        [HttpGet]
+        [HttpGet] //Rota de ação http de busca (GET)
         public IActionResult Listar()
         {
             try
@@ -103,7 +105,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="areas">Todas as informações da Área </param>
         /// <returns>Dados Alterados!</returns>
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] //Rota de ação http de alteração através do id (PUT)
         public IActionResult Alterar(int id, [FromForm] Areas areas, IFormFile arquivo)
         {
             try
@@ -179,7 +181,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="id">Id da área</param>
         /// <returns>Mensagem de exclusão</returns>
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //Rota de ação http de exclusão (DELETE)
 
         public IActionResult Deletar(int id)
         {

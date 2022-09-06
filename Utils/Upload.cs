@@ -8,7 +8,8 @@ namespace APICursosGratuitos.Utils
     public static class Upload  // Um Singleton sempre será uma classe estática
     {
         // Upload de Imagens
-        public static string UploadFile(IFormFile arquivo, string[] extensoesPermitidas, string diretorio)
+        public static string UploadFile(IFormFile arquivo, string[] extensoesPermitidas, string diretorio) //IFormFile é um tipo de formulário
+                                                                                                           //Que serve para fazer upload de arquivos
         {
 
             try
@@ -45,7 +46,7 @@ namespace APICursosGratuitos.Utils
             catch (System.Exception e)
             {
 
-                return e.Message;
+                return e.Message; // retorna mensagem de erro padrão 
             }
 
         }
@@ -77,7 +78,8 @@ namespace APICursosGratuitos.Utils
             //[0] [1] [2]
             //arq.uivo.jpeg = 3
             //lenght(3) -1 = 2
-            string[] dados = nomeArquivo.Split('.'); //retorna uma array de strings gerada pela divisão da string original separada pelo valor que passa como parâmetro 
+            string[] dados = nomeArquivo.Split('.'); //retorna uma array de strings gerada pela divisão da string original
+                                                     //separada pelo valor que passa como parâmetro 
             return dados[dados.Length - 1];
 
         }

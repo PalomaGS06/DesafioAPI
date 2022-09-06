@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 
 namespace APICursosGratuitos.Controllers
 {
+    //rota criada para a url de entrada
     [Route("api/[controller]")]
     [ApiController]
     public class CursosController : ControllerBase
@@ -24,7 +25,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="cursos">Dados dos cursos </param>
         /// <returns>Dados dos cursos cadastrados com sucesso!</returns>
 
-        [HttpPost]
+        [HttpPost] //Rota de ação http de inserção (POST)
         public IActionResult Cadastrar([FromForm] Cursos cursos, IFormFile arquivo)
         {
             try
@@ -68,7 +69,7 @@ namespace APICursosGratuitos.Controllers
         /// Lista todas os cursos existentes 
         /// </summary>
         /// <returns>Lista de Cursos</returns>
-        [HttpGet]
+        [HttpGet]  //Rota de ação http de busca (GET) 
         public IActionResult Listar()
         {
             try
@@ -99,7 +100,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="cursos">Todas as informações do curso </param>
         /// <returns>Curso Alterado!</returns>
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] //Rota de ação http de alteração através do id (PUT) 
         public IActionResult Alterar(int id, Cursos cursos)
         {
             try
@@ -154,7 +155,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="id">Id do curso</param>
         /// <returns>Mensagem de exclusão!</returns>
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //Rota de ação http de exclusão (DELETE)
 
         public IActionResult Deletar(int id)
         {

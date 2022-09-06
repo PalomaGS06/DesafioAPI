@@ -37,6 +37,7 @@ namespace APICursosGratuitos
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 
                 { 
+                    // Conteúdos e informações para o Swagger:
                     Title = "APICursosGratuitos", 
                     Version = "v1",
                     Description = "API desenvolvida para o site de Cursos Gratuitos!",
@@ -63,6 +64,7 @@ namespace APICursosGratuitos
 
 
             });
+            // Interfaces e Repositorios usados na configuração do connectionstring declarados como listas, dentro da função AddTransient()
 
                 services.AddTransient<IAulasRepository, AulasRepository>();
                 services.AddTransient<IAlunosRepository, AlunosRepository>();
@@ -94,7 +96,8 @@ namespace APICursosGratuitos
                 FileProvider = new PhysicalFileProvider(
                         Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")
                     ),
-                RequestPath = "/StaticFiles"
+                RequestPath = "/StaticFiles"    //Diretório/Pasta onde está contida a pasta Images com as imagens dentro. 
+                                               // Utilizá-se esse caminho na url
             });
 
             app.UseEndpoints(endpoints =>

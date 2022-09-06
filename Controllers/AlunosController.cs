@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 
 namespace APICursosGratuitos.Controllers
 {
+    //rota criada para a url de entrada
     [Route("api/[controller]")]
     [ApiController]
     public class AlunosController : ControllerBase
@@ -27,7 +28,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Aluno">Dados dos alunos</param>
         /// <returns>Dados do aluno cadastrado</returns>
 
-        [HttpPost]
+        [HttpPost]  //Rota de ação http de busca (GET)
         public IActionResult Cadastrar( [FromForm] Alunos Aluno)
         {
             try
@@ -53,7 +54,7 @@ namespace APICursosGratuitos.Controllers
         /// Lista todos os alunos existentes
         /// </summary>
         /// <returns>Lista do Aluno</returns>
-        [HttpGet]
+        [HttpGet]  //Rota de ação http de busca (GET)
         public IActionResult Listar()
         {
             try
@@ -68,7 +69,7 @@ namespace APICursosGratuitos.Controllers
 
                 return StatusCode(500, new
                 {
-                    msg = "Falha na conexão",
+                    msg = "Falha na conexão",  //retorna o código e mensagem de erro
                     erro = e.Message,
                 });
             }
@@ -84,7 +85,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Aluno">Todas as informações do aluno</param>
         /// <returns>Aluno Alterado!</returns>
 
-        [HttpPut("{RA}")]
+        [HttpPut("{RA}")] //Rota de ação http de alteração através do RA (id da classe Aluno) (PUT)
         public IActionResult Alterar(int RA, Alunos Aluno)
         {
             try
@@ -138,7 +139,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="RA">RA do aluno</param>
         /// <returns>Mensagem de exclusão</returns>
 
-        [HttpDelete("{RA}")]
+        [HttpDelete("{RA}")] //Rota de ação http de exclusão (DELETE)  
 
         public IActionResult Deletar(int RA)
         {

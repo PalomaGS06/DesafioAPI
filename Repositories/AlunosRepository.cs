@@ -194,7 +194,7 @@ namespace APICursosGratuitos.Repositories
                     // Tipo de comando, tipo texto. CommandType é um Enum
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
-                    alunos.Ra = Ra;
+                    alunos.Ra = Ra; //id da classe Alunos
                 }
             }
 

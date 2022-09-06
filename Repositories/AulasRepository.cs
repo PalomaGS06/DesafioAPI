@@ -81,7 +81,7 @@ namespace APICursosGratuitos.Repositories
                         {
                             aulas.Add(new Aulas
                             {
-                                Id = (int)reader["Id_Aulas"],
+                                Id = (int)reader["Id_Aulas"], //o que passa dentro das chaves é o conteudo criado para cada coluna
                                 Titulo = reader["Titulo_Aulas"].ToString(),
                                 Imenta = reader["Imenta_Aulas"].ToString(),
                                 Duracao = (int)reader["Duracao_Aulas"],
@@ -129,7 +129,7 @@ namespace APICursosGratuitos.Repositories
                     {
                         while (result.Read())
                         {
-                            aulas = new Aulas
+                            aulas = new Aulas    // atributos do Model da classe como chave estrangeira
                             {
                                 Id = (int)result[0],
                                 Titulo = result[1].ToString(),
@@ -142,7 +142,7 @@ namespace APICursosGratuitos.Repositories
                                     CargaHoraria = 0,
                                     Imagem = null
                                 },
-                                Professor = new Professores
+                                Professor = new Professores   // atributos do Model da classe como chave estrangeira
                                 {
                                     Cpf = (int)result[5],
                                     Nome = null,
@@ -173,7 +173,7 @@ namespace APICursosGratuitos.Repositories
                     cmd.Parameters.Add("@Titulo", SqlDbType.NVarChar).Value = aulas.Titulo;
                     cmd.Parameters.Add("@Imenta", SqlDbType.NVarChar).Value = aulas.Imenta;
                     cmd.Parameters.Add("@Duracao", SqlDbType.Int).Value = aulas.Duracao;
-                    cmd.Parameters.Add("@CursoId", SqlDbType.Int).Value = aulas?.Curso?.Id ?? 0;
+                    cmd.Parameters.Add("@CursoId", SqlDbType.Int).Value = aulas?.Curso?.Id ?? 0;  //?? representa caso for igual a zero
                     cmd.Parameters.Add("@ProfessorCpf", SqlDbType.Int).Value = aulas?.Professor?.Cpf ?? 0;
 
                     cmd.CommandType = CommandType.Text; // Tipo de comando Enum, do tipo texto.

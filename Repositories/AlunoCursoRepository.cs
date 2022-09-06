@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace APICursosGratuitos.Repositories
 {
-    public class AlunoCursoRepository : IAlunoCursoRepository
+    public class AlunoCursoRepository : IAlunoCursoRepository    // Herança com a interface
     {
         public AlunoCursoRepository(IConfiguration configuration)
         {
@@ -70,7 +70,7 @@ namespace APICursosGratuitos.Repositories
                     {
                         while (result.Read())
                         {
-                            alunoCurso.Add(new AlunoCurso
+                            alunoCurso.Add(new AlunoCurso // atributos do Model da classe como chave estrangeira
                             {
                                 Id = (int)result[0],
                                 AlunoRa = (int)result[1],
@@ -85,7 +85,7 @@ namespace APICursosGratuitos.Repositories
             return alunoCurso;
         }
 
-        public AlunoCurso GetById(int id)
+        public AlunoCurso GetById(int id) //busca por id
         {
             var alunoCurso = new AlunoCurso();
 

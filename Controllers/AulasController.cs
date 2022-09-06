@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 
 namespace APICursosGratuitos.Controllers
 {
+    //rota criada para a url de entrada
     [Route("api/[controller]")]
     [ApiController]
     public class AulasController : ControllerBase
@@ -22,7 +23,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="aulas">Dados das aulas </param>
         /// <returns>Dados das aulas cadastrados com sucesso!</returns>
 
-        [HttpPost]
+        [HttpPost] //Rota de ação http de inserção (POST)
         public IActionResult Cadastrar(Aulas aulas)
         {
             try
@@ -48,7 +49,7 @@ namespace APICursosGratuitos.Controllers
         /// Lista todas as aulas existentes 
         /// </summary>
         /// <returns>Lista de Aulas</returns>
-        [HttpGet]
+        [HttpGet] //Rota de ação http de busca (GET)
         public IActionResult Listar()
         {
             try
@@ -79,7 +80,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="aulas">Todas as informações da aula </param>
         /// <returns>Aula Alterada!</returns>
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] //Rota de ação http de alteração através do id (PUT)
         public IActionResult Alterar(int id, Aulas aulas)
         {
             try
@@ -89,7 +90,7 @@ namespace APICursosGratuitos.Controllers
                 {
                     return NotFound(new
                     {
-                        msg = "ID inválido!"
+                        msg = "ID inválido!"  // mensagem de erro
                     });
                 }
 
@@ -133,7 +134,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="id">Id da aulas</param>
         /// <returns>Mensagem de exclusão!</returns>
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //Rota de ação http de exclusão (DELETE)
 
         public IActionResult Deletar(int id)
         {

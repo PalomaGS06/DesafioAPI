@@ -81,7 +81,7 @@ namespace APICursosGratuitos.Repositories
                         {
                             cursos.Add(new Cursos
                             {
-                                Id = (int)reader["Id_Cursos"],
+                                Id = (int)reader["Id_Cursos"],  //o que passa dentro das chaves é o conteudo criado para cada coluna
                                 Nome = reader["Nome_Cursos"].ToString(),
                                 CargaHoraria = (int)reader["Hora_Cursos"],
                                 Area = new Areas
@@ -128,7 +128,7 @@ namespace APICursosGratuitos.Repositories
                                 Id = (int)result[0],
                                 Nome = (string)result[1],
                                 CargaHoraria = (int)result[2],
-                                Area = new Areas
+                                Area = new Areas   // atributos do Model da classe como chave estrangeira
                                 {
                                     Id = (int)result[3],
                                     Area = null,
@@ -161,7 +161,7 @@ namespace APICursosGratuitos.Repositories
                     //As declarações das variaveis por parametros são feitas
                     cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = cursos.Nome;
                     cmd.Parameters.Add("@CargaHoraria", SqlDbType.Int).Value = cursos.CargaHoraria;
-                    cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = cursos?.Area?.Id ?? 0;
+                    cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = cursos?.Area?.Id ?? 0;  //?? representa caso for igual a zero
                     cmd.Parameters.Add("@Imagem", SqlDbType.NVarChar).Value = cursos.Imagem;
 
                     cmd.CommandType = CommandType.Text; // Tipo de comando Enum, do tipo texto.

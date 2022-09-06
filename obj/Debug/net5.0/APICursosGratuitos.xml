@@ -6,10 +6,10 @@
     <members>
         <member name="M:APICursosGratuitos.Controllers.AlunoCursoController.Cadastrar(APICursosGratuitos.Models.AlunoCurso)">
             <summary>
-            Cadastra os ids dos alunos e cursos
+            Cadastra os ids dos alunos e cursos //quais as colunas e informações que serão cadastradas
             </summary>
             <param name="alunoCurso">Dados dos alunos e cursos </param>
-            <returns>Ids dos alunos e cursos cadastrados com sucesso!</returns>
+            <returns>Ids dos alunos e cursos cadastrados com sucesso!</returns>  //mensagem de retorno após cadastrar as informações da classe
         </member>
         <member name="M:APICursosGratuitos.Controllers.AlunoCursoController.Listar">
             <summary>

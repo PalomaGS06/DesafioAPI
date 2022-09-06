@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 
 namespace APICursosGratuitos.Controllers
 {
+    //rota criada para a url de entrada
     [Route("api/[controller]")]
     [ApiController]
     public class ProfessoresController : ControllerBase
@@ -23,7 +24,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Professores">Dados dos professores</param>
         /// <returns>Dados do prof cadastrados com sucesso</returns>
 
-        [HttpPost]
+        [HttpPost] //Rota de ação http de inserção (POST)   
         public IActionResult Cadastrar([FromForm] Professores Professores)
         {
             try
@@ -49,7 +50,7 @@ namespace APICursosGratuitos.Controllers
         /// Lista todos os professores existentes
         /// </summary>
         /// <returns>Lista de Professores</returns>
-        [HttpGet]
+        [HttpGet]  //Rota de ação http de busca (GET)
         public IActionResult Listar()
         {
             try
@@ -80,7 +81,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Professor">Todas as informações do Professor</param>
         /// <returns>Email Alterado!</returns>
 
-        [HttpPut("{Cpf}")]
+        [HttpPut("{Cpf}")] //Rota de ação http de alteração através do id (PUT)
         public IActionResult Alterar(int Cpf, Professores Professor)
         {
             try
@@ -134,7 +135,7 @@ namespace APICursosGratuitos.Controllers
         /// <param name="Cpf">CPF do professor</param>
         /// <returns>Mensagem de exclusão</returns>
 
-        [HttpDelete("{Cpf}")]
+        [HttpDelete("{Cpf}")] //Rota de ação http de exclusão (DELETE)
 
         public IActionResult Deletar(int Cpf)
         {
