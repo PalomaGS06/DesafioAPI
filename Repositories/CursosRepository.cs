@@ -186,7 +186,7 @@ namespace APICursosGratuitos.Repositories
                 using (SqlCommand cmd = new SqlCommand(script, conexao))
                 {
                     //Declarações das variáveis por parametro
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = cursos.Id;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
                     cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = cursos.Nome;
                     cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = cursos?.Area?.Id ?? 0;
                     cmd.Parameters.Add("@Imagem", SqlDbType.NVarChar).Value = cursos.Imagem;
